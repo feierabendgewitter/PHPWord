@@ -166,6 +166,28 @@ $row->addCell(2000, ['marginBottomSize' => 500, 'valign' => 'bottom'])->addText(
 $row = $table->addRow($rowHeight);
 $row->addCell(2000, ['marginTopSize' => 500, 'marginLeftSize' => 500])->addText('top: 500, left: 500');
 
+// 7. Table with margins
+
+$section->addTextBreak(1);
+
+$rows = 10;
+$cols = 5;
+$section->addText('Table with margins', $header);
+
+$table = $section->addTable([
+    'marginTop' => 400,
+    'marginBottom' => 400,
+    'marginLeft' => 1000,
+    'marginRight' => 3000,
+]);
+for ($r = 1; $r <= 8; $r++) {
+    $table->addRow();
+    for ($c = 1; $c <= 5; $c++) {
+        $table->addCell(1000)->addText("Row {$r}, Cell {$c}");
+    }
+}
+
+
 // Save file
 echo write($phpWord, basename(__FILE__, '.php'), $writers);
 if (!CLI) {
