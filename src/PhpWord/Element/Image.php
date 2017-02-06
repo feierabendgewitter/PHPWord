@@ -390,10 +390,10 @@ class Image extends AbstractElement
             // WMF image is dimensionless
             $imageData = array(null, null, self::IMAGETYPE_WMF);
         }
-        else {
-        } else if ($this->sourceType == self::SOURCE_STRING) {
+        else if ($this->sourceType === self::SOURCE_STRING) {
             $imageData = $this->getStringImageSize($source);
-        } else {
+        }
+        else {
             $imageData = @getimagesize($source);
         }
         if (!is_array($imageData)) {
