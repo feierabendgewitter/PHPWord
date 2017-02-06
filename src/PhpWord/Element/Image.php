@@ -35,6 +35,7 @@ class Image extends AbstractElement
     const SOURCE_LOCAL = 'local'; // Local images
     const SOURCE_GD = 'gd'; // Generated using GD
     const SOURCE_ARCHIVE = 'archive'; // Image in archives zip://$archive#$image
+    const SOURCE_STRING = 'string'; // Image from string
 
     /**
      * Image type WMF
@@ -390,10 +391,13 @@ class Image extends AbstractElement
             $imageData = array(null, null, self::IMAGETYPE_WMF);
         }
         else {
+        } else if ($this->sourceType == self::SOURCE_STRING) {
+            $imageData = $this->getStringImageSize($source);
+        } else {
             $imageData = @getimagesize($source);
         }
         if (!is_array($imageData)) {
-            throw new InvalidImageException();
+            throw new InvalidImageException(sprintf('Invalid image: %s', $source));
         }
         list($actualWidth, $actualHeight, $imageType) = $imageData;
 
@@ -426,9 +430,15 @@ class Image extends AbstractElement
         } elseif (strpos($source, 'zip://') !== false) {
             $this->memoryImage = false;
             $this->sourceType = self::SOURCE_ARCHIVE;
+        } elseif (filter_var($source, FILTER_VALIDATE_URL) !== false) {
+            $this->memoryImage = true;
+            $this->sourceType = self::SOURCE_GD;
+        } elseif (@file_exists($source)) {
+            $this->memoryImage = false;
+            $this->sourceType = self::SOURCE_LOCAL;
         } else {
-            $this->memoryImage = (filter_var($source, FILTER_VALIDATE_URL) !== false);
-            $this->sourceType = $this->memoryImage ? self::SOURCE_GD : self::SOURCE_LOCAL;
+            $this->memoryImage = true;
+            $this->sourceType = self::SOURCE_STRING;
         }
     }
 
@@ -468,6 +478,24 @@ class Image extends AbstractElement
         }
 
         return $imageData;
+    }
+
+    /**
+     * get image size from string
+     *
+     * @param string $source
+     *
+     * @codeCoverageIgnore this method is just a replacement for getimagesizefromstring which exists only as of PHP 5.4
+     */
+    private function getStringImageSize($source)
+    {
+        if (!function_exists('getimagesizefromstring')) {
+            $uri = 'data://application/octet-stream;base64,'  . base64_encode($source);
+            return @getimagesize($uri);
+        } else {
+            return @getimagesizefromstring($source);
+        }
+        return false;
     }
 
     /**
