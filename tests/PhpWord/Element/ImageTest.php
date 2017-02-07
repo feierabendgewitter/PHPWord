@@ -127,7 +127,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     /**
      * Test unsupported image
      *
-     * @expectedException \PhpOffice\PhpWord\Exception\UnsupportedImageTypeException
+     * @expectedException \PhpOffice\PhpWord\Exception\InvalidImageException
      */
     public function testUnsupportedImage()
     {
