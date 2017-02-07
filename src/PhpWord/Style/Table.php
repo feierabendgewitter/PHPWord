@@ -529,6 +529,23 @@ class Table extends Border
         return $this->setTableOnlyProperty('cellMarginBottom', $value);
     }
 
+
+    /**
+     * Get table margins
+     *
+     * @return integer[]
+     */
+    public function getMargin()
+    {
+        return array(
+            $this->marginTop,
+            $this->marginLeft,
+            $this->marginRight,
+            $this->marginBottom
+        );
+    }
+
+
     /**
      * Get cell margin
      *

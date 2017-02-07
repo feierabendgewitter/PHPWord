@@ -361,5 +361,4 @@ class Cell extends Border
         $margins = $this->getMarginSize();
         return $margins !== array_filter($margins, 'is_null');
     }
-
 }

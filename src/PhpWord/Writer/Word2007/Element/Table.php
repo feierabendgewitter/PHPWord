@@ -180,8 +180,7 @@ class Table extends AbstractElement
 
                     if ($totalColumnWidth <= $cellWidth) {
                         $gridSpan++;
-                    }
-                    else {
+                    } else {
                         $index = $i++;
                         break;
                     }

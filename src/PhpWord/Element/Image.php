@@ -385,15 +385,12 @@ class Image extends AbstractElement
         // Check image data
         if ($this->sourceType === self::SOURCE_ARCHIVE) {
             $imageData = $this->getArchiveImageSize($source);
-        }
-        else if (strtolower(pathinfo($source, PATHINFO_EXTENSION)) === 'wmf') {
+        } else if (strtolower(pathinfo($source, PATHINFO_EXTENSION)) === 'wmf') {
             // WMF image is dimensionless
             $imageData = array(null, null, self::IMAGETYPE_WMF);
-        }
-        else if ($this->sourceType === self::SOURCE_STRING) {
+        } else if ($this->sourceType === self::SOURCE_STRING) {
             $imageData = $this->getStringImageSize($source);
-        }
-        else {
+        } else {
             $imageData = @getimagesize($source);
         }
         if (!is_array($imageData)) {
