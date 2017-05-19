@@ -78,6 +78,13 @@ abstract class AbstractElement
     protected $elementId;
 
     /**
+     * Element counter
+     *
+     * @var int
+     */
+    private static $elementCounter = 1;
+
+    /**
      * Relation Id
      *
      * @var int
@@ -236,7 +243,7 @@ abstract class AbstractElement
      */
     public function setElementId()
     {
-        $this->elementId = substr(md5(rand()), 0, 6);
+        $this->elementId = 'el' . self::$elementCounter++;
     }
 
     /**
