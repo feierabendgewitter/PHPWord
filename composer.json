@@ -47,7 +47,7 @@
         "phploc/phploc": "4.*",
         "dompdf/dompdf":"0.8.*",
         "tecnickcom/tcpdf": "6.*",
-        "mpdf/mpdf": "6.1.4"
+        "mpdf/mpdf": "*"
     },
     "suggest": {
         "ext-zip": "Allows writing OOXML and ODF",
