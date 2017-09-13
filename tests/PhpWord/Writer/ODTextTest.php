@@ -102,11 +102,13 @@ class ODTextTest extends \PHPUnit_Framework_TestCase
      */
     public function testSavePhpOutput()
     {
+        ob_start();
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
         $section->addText('Test');
         $writer = new ODText($phpWord);
         $writer->save('php://output');
+        ob_end_clean();
     }
 
     /**

@@ -103,10 +103,12 @@ class RTFTest extends \PHPUnit_Framework_TestCase
      */
     public function testSavePhpOutput()
     {
+        ob_start();
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
         $section->addText(htmlspecialchars('Test', ENT_COMPAT, 'UTF-8'));
         $writer = new RTF($phpWord);
         $writer->save('php://output');
+        ob_end_clean();
     }
 }

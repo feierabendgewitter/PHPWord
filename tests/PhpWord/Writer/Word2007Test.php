@@ -166,6 +166,7 @@ class Word2007Test extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetUseDiskCaching()
     {
+        ob_start();
         $phpWord = new PhpWord();
         $phpWord->addSection();
         $object = new Word2007($phpWord);
@@ -174,6 +175,7 @@ class Word2007Test extends \PHPUnit_Framework_TestCase
         $writer->save('php://output');
 
         $this->assertTrue($object->isUseDiskCaching());
+        ob_end_clean();
     }
 
     /**

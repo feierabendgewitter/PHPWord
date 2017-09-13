@@ -152,11 +152,13 @@ class PhpWordTest extends \PHPUnit_Framework_TestCase
      */
     public function testSave()
     {
+        ob_start();
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
         $section->addText('Hello world!');
 
         $this->assertTrue($phpWord->save('test.docx', 'Word2007', true));
+        ob_end_clean();
     }
 
     /**
