@@ -35,7 +35,7 @@ class PDFTest extends \PHPUnit_Framework_TestCase
         $file = __DIR__ . '/../_files/temp.pdf';
 
         $rendererName = Settings::PDF_RENDERER_DOMPDF;
-        $rendererLibraryPath = realpath(PHPWORD_TESTS_BASE_DIR . '/../vendor/dompdf/dompdf');
+        $rendererLibraryPath = realpath(PHPWORD_TESTS_BASE_DIR . '/../vendor/dompdf/dompdf/src');
         Settings::setPdfRenderer($rendererName, $rendererLibraryPath);
         $writer = new PDF(new PhpWord());
         $writer->save($file);
