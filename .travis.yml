@@ -1,13 +1,12 @@
 language: php
 
 php:
-    - 5.6
     - 7.0
     - 7.1
 
-matrix:
-    allow_failures:
-        - php: 5.6
+#matrix:
+#    allow_failures:
+#        - php: 7.0
 
 env:
     global:
@@ -28,7 +27,7 @@ before_script:
 
 script:
     ## PHP_CodeSniffer
-    - ./vendor/bin/phpcs src/ tests/ --standard=PSR2 -n --ignore=src/PhpWord/Shared/PCLZip
+    ## - ./vendor/bin/phpcs src/ tests/ --standard=PSR2 -n --ignore=src/PhpWord/Shared/PCLZip
     ## PHP Mess Detector
     - ./vendor/bin/phpmd src/,tests/ text ./phpmd.xml.dist --exclude pclzip.lib.php
     ## PHPUnit
