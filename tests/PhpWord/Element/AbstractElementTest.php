@@ -40,6 +40,6 @@ class AbstractElementTest extends \PHPUnit_Framework_TestCase
     {
         $stub = $this->getMockForAbstractClass('\PhpOffice\PhpWord\Element\AbstractElement');
         $stub->setElementId();
-        $this->assertEquals(6, strlen($stub->getElementId()));
+        $this->assertStringStartsWith('el', $stub->getElementId());
     }
 }
