@@ -75,7 +75,7 @@ class Section extends AbstractStyle
             $styleWriter = new MarginBorder($xmlWriter);
             $styleWriter->setSizes($style->getBorderSize());
             $styleWriter->setColors($style->getBorderColor());
-            $styleWriter->setAttributes(array('space' => '24'));
+            $styleWriter->setAttributes(array('space' => $style->getBordersSpace()));
             $styleWriter->write();
 
             $xmlWriter->endElement();
