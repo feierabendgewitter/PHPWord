@@ -48,7 +48,7 @@ With PHPWord, you can create OOXML, ODF, or RTF documents dynamically using your
 
 PHPWord requires the following:
 
-- PHP 7.0.0+
+- PHP 5.3.3+ (<= v.0.13.6), PHP 7.0.0+ (>= v.0.13.7)
 - [XML Parser extension](http://www.php.net/manual/en/xml.installation.php)
 - [Zend\Escaper component](http://framework.zend.com/manual/current/en/modules/zend.escaper.introduction.html)
 - Zend\Stdlib component
